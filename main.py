@@ -3,7 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, Cal
 import database
 from signals import start_signal_scheduler
 
-ADMIN_ID = @kingAdio
+ADMIN_ID = 1947232401
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
