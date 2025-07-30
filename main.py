@@ -10,7 +10,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not database.user_exists(user_id):
         await update.message.reply_text(
             "Welcome to the VIP Trading Signal Bot 📊\n\n"
-            "👉 First, register with my affiliate link: https://pocket-friends.com/r/hubsllff9j
+            "👉 First, register with my affiliate link: https://pocket-friends.com/r/hubsllff9j\n"
             "Then send me your Pocket Option ID."
         )
     else:
