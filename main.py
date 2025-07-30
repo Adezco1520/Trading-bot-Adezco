@@ -5,8 +5,8 @@ import database
 from indicators import calculate_signals
 from signals import send_trading_signal
 
-BOT_TOKEN = "7653929732:AAFUqby50OIqAsE8SHDktAhA6g7DzsQZIlE"
-ADMIN_ID = 1947232401
+BOT_TOKEN = "YOUR_BOT_TOKEN"
+ADMIN_ID = 123456789  # Replace with your numeric Telegram ID
 
 # Start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -56,14 +56,7 @@ async def start_signal_scheduler(app):
         await asyncio.sleep(60)  # Runs every 1 minute
 
 # Main entry
-async def main():
-    app = ApplicationBuilder().token(BOT_TOKEN).build()
-
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("approve", approve))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_id))
-
-    if __name__ == "__main__":
+if __name__ == "__main__":
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
