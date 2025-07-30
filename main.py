@@ -63,8 +63,15 @@ async def main():
     app.add_handler(CommandHandler("approve", approve))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_id))
 
-    asyncio.create_task(start_signal_scheduler(app))
-    await app.run_polling()
+    if __name__ == "__main__":
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("approve", approve))
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_id))
+
+    # Start scheduler in background
+    asyncio.get_event_loop().create_task(start_signal_scheduler(app))
+
+    # Run bot
+    app.run_polling()
