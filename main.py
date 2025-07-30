@@ -97,5 +97,9 @@ def main():
 
     app.run_polling()
 
+async def main():
+    asyncio.create_task(start_signal_scheduler(app))
+    await app.run_polling()
+
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
