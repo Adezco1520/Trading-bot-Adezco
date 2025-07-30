@@ -1,25 +1,24 @@
 import pandas as pd
 import ta
 
-def rsi(data, period=14):
-    """Calculate RSI"""
-    return ta.momentum.RSIIndicator(data['close'], window=period).rsi().iloc[-1]
+def calculate_signals():
+    # Example dummy data
+    data = pd.DataFrame({
+        'close': [1.12, 1.14, 1.13, 1.15, 1.16],
+        'high': [1.13, 1.15, 1.14, 1.16, 1.17],
+        'low': [1.11, 1.13, 1.12, 1.14, 1.15]
+    })
 
-def ma(data, period=14):
-    """Calculate Moving Average"""
-    return data['close'].rolling(period).mean().iloc[-1]
+    # Calculate indicators
+    data['rsi'] = ta.momentum.RSIIndicator(data['close']).rsi()
+    data['adx'] = ta.trend.ADXIndicator(data['high'], data['low'], data['close']).adx()
+    data['atr'] = ta.volatility.AverageTrueRange(data['high'], data['low'], data['close']).average_true_range()
 
-def macd(data):
-    """Calculate MACD and signal"""
-    macd_calc = ta.trend.MACD(data['close'])
-    return macd_calc.macd().iloc[-1], macd_calc.macd_signal().iloc[-1]
-
-def adx(data, period=14):
-    """Calculate ADX"""
-    adx_calc = ta.trend.ADXIndicator(data['high'], data['low'], data['close'], window=period)
-    return adx_calc.adx().iloc[-1]
-
-def atr(data, period=14):
-    """Calculate Average True Range"""
-    atr_calc = ta.volatility.AverageTrueRange(data['high'], data['low'], data['close'], window=period)
-    return atr_calc.average_true_range().iloc[-1]
+    # Generate a simple signal based on RSI
+    last_rsi = data['rsi'].iloc[-1]
+    if last_rsi < 30:
+        return "BUY"
+    elif last_rsi > 70:
+        return "SELL"
+    else:
+        return "HOLD"
