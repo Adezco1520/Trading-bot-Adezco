@@ -5,8 +5,8 @@ import database
 from indicators import calculate_signals
 from signals import send_trading_signal
 
-BOT_TOKEN = "YOUR_BOT_TOKEN"
-ADMIN_ID = 123456789  # Replace with your numeric Telegram ID
+BOT_TOKEN = "7653929732:AAFUqby50OIqAsE8SHDktAhA6g7DzsQZIlE"
+ADMIN_ID = 1947232401
 
 # Start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
